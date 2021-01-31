@@ -1,0 +1,9 @@
+Plik zawiera dane z rejestracji z kilku urządzeń
+kolumna 1 - id urządzenia (0 - opaska mmg z 8 czujnikami IMU)
+kolumna 2 - znacznik czasu
+
+W celu pobrania danych z opaski należy wczytać tylko te wiersze, które w kolumnie 1 mają wartość 0.
+
+kolumny 3:5 + 9*id dane gyroskou IMU o nr ID kolejno dla osi x,y,z
+kolumny 6:8 + 9*id dane z akcelerometru IMU o nr ID kolejno dla osi x,y,z
+kolumny 9:11 + 9*id dane z magnetometru IMU o nr ID kolejno dla osi x,y,z
