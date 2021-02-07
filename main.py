@@ -1,7 +1,9 @@
 import pandas as pd
-
+import numpy as np
 from utils.show_sensor_data import show_sensor_data_3d, show_sensor_data_2d
 from utils.calculate_offset import calculate_offset
+from utils.ellipsoid import elipsoid
+from scipy.optimize import fmin_bfgs
 # ----------------------------------------------------------------------------------------------------------------------
 # Loading data
 column_names = []
@@ -63,7 +65,8 @@ df_mmg_calib_Zd = df_mmg_calib_Zd[df_mmg_calib_Zd["ID"] == 0]
 # print(f'Accelerometer offset for axis X of sensor 0 is {calculate_offset(df_mmg_calib_Xu, df_mmg_calib_Xd,0,1,"X")}')
 # print(f'Accelerometer offset for axis Y of sensor 0 is {calculate_offset(df_mmg_calib_Yu, df_mmg_calib_Yd,0,1,"Y")}')
 # print(f'Accelerometer offset for axis Z of sensor 0 is {calculate_offset(df_mmg_calib_Zu, df_mmg_calib_Zd,0,1,"Z")}')
-
+# ----------------------------------------------------------------------------------------------------------------------
+# Calculating gyroscope and accelerometer offset and ellipsoid parameters
 for i in range(0, 8):
     print("-"*15)
     print(f'Gyroscope offset for axis X of sensor {i} is {calculate_offset(df_mmg_calib_Xu, df_mmg_calib_Xd, i, 0, "X")}')
@@ -73,4 +76,11 @@ for i in range(0, 8):
     print(f'Accelerometer offset for axis Y of sensor {i} is {calculate_offset(df_mmg_calib_Yu, df_mmg_calib_Yd, i, 1, "Y")}')
     print(f'Accelerometer offset for axis Z of sensor {i} is {calculate_offset(df_mmg_calib_Zu, df_mmg_calib_Zd, i, 1, "Z")}')
 
-# TODO: Magnetometer calibration procedure
+    res = fmin_bfgs(elipsoid, np.array([1, 1, 1, 0, 0, 0]), args=(df_mmg_calib[["Mag_"+str(i)+"_X",
+                                                                                "Mag_"+str(i)+"_Y",
+                                                                                "Mag_"+str(i)+"_Z"]],))
+    print(f'Ellipsoid parameters for sensor{i}: a={res[0]}; b={res[1]}; c={res[2]}; x0={res[3]}, y0={res[4]}; z0={res[5]}')
+
+# ----------------------------------------------------------------------------------------------------------------------
+# TODO: Use calculated parameters to calibrate sensors data
+
