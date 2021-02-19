@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 from utils.show_sensor_data import show_sensor_data_3d, show_sensor_data_2d
 from utils.calculate_offset import calculate_offset
-from utils.ellipsoid import elipsoid
-from scipy.optimize import fmin_bfgs
+from utils.ellipsoid import elipsoid, calculate_ellipsoid_parameters
+from scipy.optimize import fmin_bfgs, fmin, fmin_powell
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Loading data
@@ -79,10 +79,9 @@ for i in range(0, 8):
     a_x = calculate_offset(df_mmg_calib_Xu, df_mmg_calib_Xd, i, 1, "X")
     a_y = calculate_offset(df_mmg_calib_Yu, df_mmg_calib_Yd, i, 1, "Y")
     a_z = calculate_offset(df_mmg_calib_Zu, df_mmg_calib_Zd, i, 1, "Z")
-    res = fmin_bfgs(elipsoid, np.array([1, 1, 1, 0, 0, 0]), args=(df_mmg_calib
-                                                                  [["Mag_" + str(i) + "_X",
-                                                                    "Mag_" + str(i) + "_Y",
-                                                                    "Mag_" + str(i) + "_Z"]],))
+    offset, gains, rotation_matrix = calculate_ellipsoid_parameters(df_mmg_calib["Mag_" + str(i) + "_X"],
+                                                                    df_mmg_calib["Mag_" + str(i) + "_Y"],
+                                                                    df_mmg_calib["Mag_" + str(i) + "_Z"])
     print(f'Gyroscope offset for axis X of sensor {i} is {g_x}')
     print(f'Gyroscope offset for axis Y of sensor {i} is {g_y}')
     print(f'Gyroscope offset for axis Z of sensor {i} is {g_z}')
@@ -90,7 +89,9 @@ for i in range(0, 8):
     print(f'Accelerometer offset for axis Y of sensor {i} is {a_y}')
     print(f'Accelerometer offset for axis Z of sensor {i} is {a_z}')
     print(
-        f'Ellipsoid parameters for sensor{i}: a={res[0]}; b={res[1]}; c={res[2]}; x0={res[3]}, y0={res[4]}; z0={res[5]}')
+        f'Ellipsoid parameters for sensor{i}: a={gains[0]}; b={gains[1]}; c={gains[2]}; x0={offset[0,0]}, y0={offset[1,0]};'
+        f' z0={offset[2,0]}')
+    print(f'Ellipsoid\'s rotation martrix:\n{rotation_matrix}')
 
     saved_data[i] = {}
     saved_data[i]["Gyro"] = {}
@@ -102,30 +103,33 @@ for i in range(0, 8):
     saved_data[i]["Acc"]["X"] = a_x
     saved_data[i]["Acc"]["Y"] = a_y
     saved_data[i]["Acc"]["Z"] = a_z
-    saved_data[i]["Mag"]["a"] = res[0]
-    saved_data[i]["Mag"]["b"] = res[1]
-    saved_data[i]["Mag"]["c"] = res[2]
-    saved_data[i]["Mag"]["x0"] = res[3]
-    saved_data[i]["Mag"]["y0"] = res[4]
-    saved_data[i]["Mag"]["z0"] = res[5]
+    saved_data[i]["Mag"]["gains"] = gains
+    saved_data[i]["Mag"]["offset"] = offset[:,0]
+    saved_data[i]["Mag"]["rotation_matrix"] = rotation_matrix
 
 # ----------------------------------------------------------------------------------------------------------------------
 df_calibrated = df_mmg_calib.copy()
 for i in range(0, 8):
-    df_calibrated["Gyro_" + str(i) + "_X"] = df_calibrated["Gyro_" + str(i) + "_X"] - saved_data[i]["Gyro"]["X"]
-    df_calibrated["Gyro_" + str(i) + "_Y"] = df_calibrated["Gyro_" + str(i) + "_Y"] - saved_data[i]["Gyro"]["Y"]
+    df_calibrated["Gyro_" + str(i) + "_X"] -= saved_data[i]["Gyro"]["X"]
+    df_calibrated["Gyro_" + str(i) + "_Y"] -= saved_data[i]["Gyro"]["Y"]
     df_calibrated["Gyro_" + str(i) + "_Z"] = df_calibrated["Gyro_" + str(i) + "_Z"] - saved_data[i]["Gyro"]["Z"]
 
-    df_calibrated["Acc_" + str(i) + "_X"] = df_calibrated["Acc_" + str(i) + "_X"] - saved_data[i]["Acc"]["X"]
-    df_calibrated["Acc_" + str(i) + "_Y"] = df_calibrated["Acc_" + str(i) + "_Y"] - saved_data[i]["Acc"]["Y"]
-    df_calibrated["Acc_" + str(i) + "_Z"] = df_calibrated["Acc_" + str(i) + "_Z"] - saved_data[i]["Acc"]["Z"]
+    df_calibrated["Acc_" + str(i) + "_X"] -= saved_data[i]["Acc"]["X"]
+    df_calibrated["Acc_" + str(i) + "_Y"] -= saved_data[i]["Acc"]["Y"]
+    df_calibrated["Acc_" + str(i) + "_Z"] -= saved_data[i]["Acc"]["Z"]
 
-    df_calibrated["Mag_" + str(i) + "_X"] = (df_calibrated["Mag_" + str(i) + "_X"] - saved_data[i]["Mag"]["x0"]) * \
-                                            saved_data[i]["Mag"]["a"]
-    df_calibrated["Mag_" + str(i) + "_Y"] = (df_calibrated["Mag_" + str(i) + "_Y"] - saved_data[i]["Mag"]["y0"]) * \
-                                            saved_data[i]["Mag"]["b"]
-    df_calibrated["Mag_" + str(i) + "_Z"] = (df_calibrated["Mag_" + str(i) + "_Z"] - saved_data[i]["Mag"]["z0"]) * \
-                                            saved_data[i]["Mag"]["c"]
+    df_calibrated["Mag_" + str(i) + "_X"] -= saved_data[i]["Mag"]["offset"][0]
+    df_calibrated["Mag_" + str(i) + "_Y"] -= saved_data[i]["Mag"]["offset"][1]
+    df_calibrated["Mag_" + str(i) + "_Z"] -= saved_data[i]["Mag"]["offset"][2]
+
+    df_calibrated[["Mag_" + str(i) + "_X",
+                   "Mag_" + str(i) + "_Y",
+                   "Mag_" + str(i) + "_Z"]] = df_calibrated[["Mag_" + str(i) + "_X",
+                                                             "Mag_" + str(i) + "_Y",
+                                                             "Mag_" + str(i) + "_Z"]].values.dot(saved_data[i]["Mag"]["rotation_matrix"])
+    df_calibrated["Mag_" + str(i) + "_X"] /= saved_data[i]["Mag"]["gains"][0]
+    df_calibrated["Mag_" + str(i) + "_Y"] /= saved_data[i]["Mag"]["gains"][1]
+    df_calibrated["Mag_" + str(i) + "_Z"] /= saved_data[i]["Mag"]["gains"][2]
 
 show_sensor_data_3d(df_mmg_calib, 0, 2)
 # show_sensor_data_3d(df_mmg_calib, 1, 2)
@@ -148,4 +152,3 @@ show_sensor_data_3d(df_calibrated, 0, 2)
 # show_sensor_data_2d(df_mmg_calib, 0, 2, "X", "Z")
 # show_sensor_data_3d(df_mmg_calib, 0, 0)
 # show_sensor_data_3d(df_calibrated, 0, 0)
-

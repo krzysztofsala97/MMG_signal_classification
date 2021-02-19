@@ -1,104 +1,96 @@
 ---------------
-Optimization terminated successfully.
-         Current function value: 0.000279
-         Iterations: 56
-         Function evaluations: 840
-         Gradient evaluations: 120
 Gyroscope offset for axis X of sensor 0 is 0.27859956004514674
 Gyroscope offset for axis Y of sensor 0 is -0.02353534736865891
 Gyroscope offset for axis Z of sensor 0 is -0.3022823966340415
 Accelerometer offset for axis X of sensor 0 is -0.10592283972911966
 Accelerometer offset for axis Y of sensor 0 is 0.060368358377584454
 Accelerometer offset for axis Z of sensor 0 is 0.035999042730962036
-Ellipsoid parameters for sensor0: a=10652.494002784108; b=20006.286406461386; c=3929.8713522716503; x0=-9954.838565329264, y0=-7100.984368831449; z0=102.04205684402743
+Ellipsoid parameters for sensor0: a=0.4409907108905048; b=0.3842886637383821; c=0.36498088374268456; x0=-0.1419021190329027, y0=-0.0438027616303437; z0=-0.16839487889349358
+Ellipsoid's rotation martrix:
+[[ 0.62386078  0.24236567  0.74300512]
+ [ 0.77655352 -0.29940959 -0.55436318]
+ [ 0.08810426  0.92282868 -0.37499981]]
 ---------------
-Warning: Desired error not necessarily achieved due to precision loss.
-         Current function value: 0.213827
-         Iterations: 63
-         Function evaluations: 788
-         Gradient evaluations: 111
 Gyroscope offset for axis X of sensor 1 is -1.0202382036117381
 Gyroscope offset for axis Y of sensor 1 is 0.4812233123940798
 Gyroscope offset for axis Z of sensor 1 is -0.6355299850799714
 Accelerometer offset for axis X of sensor 1 is -0.13140304627539484
 Accelerometer offset for axis Y of sensor 1 is 0.12250751666478371
 Accelerometer offset for axis Z of sensor 1 is -0.04824611721174499
-Ellipsoid parameters for sensor1: a=30287.81340990934; b=2762.9914755243353; c=1864.7093813501306; x0=-30294.237336590028, y0=-59.80203293768921; z0=6.220114244278804
+Ellipsoid parameters for sensor1: a=0.44276618795419986; b=0.38319537922659214; c=0.37567674322758077; x0=-0.04559132983811104, y0=0.15377976602233692; z0=0.0023633602943158374
+Ellipsoid's rotation martrix:
+[[-0.62422678 -0.24227863  0.74272606]
+ [-0.77735693  0.28733043 -0.5596047 ]
+ [-0.07782754 -0.92668349 -0.36769632]]
 ---------------
-Warning: Desired error not necessarily achieved due to precision loss.
-         Current function value: 0.000322
-         Iterations: 67
-         Function evaluations: 739
-         Gradient evaluations: 104
 Gyroscope offset for axis X of sensor 2 is 0.45144530259593674
 Gyroscope offset for axis Y of sensor 2 is -0.23021377833013218
 Gyroscope offset for axis Z of sensor 2 is -2.22554123418477
 Accelerometer offset for axis X of sensor 2 is -0.17427981602708803
 Accelerometer offset for axis Y of sensor 2 is 0.08537485368884871
 Accelerometer offset for axis Z of sensor 2 is -0.030071295058486578
-Ellipsoid parameters for sensor2: a=15072.813244682733; b=373.20342957485866; c=340.4010977077959; x0=-15072.368629401137, y0=1.1568835305188738; z0=-0.9377509388243208
+Ellipsoid parameters for sensor2: a=0.41624554525661; b=0.4023400387234499; c=0.38935518085323656; x0=-0.030196579182435578, y0=-0.04779609289723447; z0=0.007148773513316435
+Ellipsoid's rotation martrix:
+[[ 0.84321742 -0.51536912 -0.15290208]
+ [ 0.43450714  0.82087583 -0.37062974]
+ [ 0.31652475  0.24608441  0.91610837]]
 ---------------
-Warning: Desired error not necessarily achieved due to precision loss.
-         Current function value: 0.002091
-         Iterations: 67
-         Function evaluations: 857
-         Gradient evaluations: 122
 Gyroscope offset for axis X of sensor 3 is 0.3040891353273138
 Gyroscope offset for axis Y of sensor 3 is -0.09273884867246637
 Gyroscope offset for axis Z of sensor 3 is -0.48780758211983766
 Accelerometer offset for axis X of sensor 3 is -0.14616758352144477
 Accelerometer offset for axis Y of sensor 3 is 0.10639228674726023
 Accelerometer offset for axis Z of sensor 3 is -0.07407474934351872
-Ellipsoid parameters for sensor3: a=21072.345295262443; b=91303.98248761256; c=23399.856670860656; x0=616.2643345402676, y0=-91201.95084967378; z0=895.6624153849397
+Ellipsoid parameters for sensor3: a=0.42748058138009365; b=0.39186946712535076; c=0.3724656138121007; x0=0.05460780317222237, y0=-0.1318372093326152; z0=-0.07388762675152599
+Ellipsoid's rotation martrix:
+[[-0.62695446  0.18954215  0.75564666]
+ [-0.74242684  0.14855475 -0.6532487 ]
+ [-0.23607306 -0.97056955  0.04758412]]
 ---------------
-Warning: Desired error not necessarily achieved due to precision loss.
-         Current function value: 0.004412
-         Iterations: 66
-         Function evaluations: 600
-         Gradient evaluations: 84
 Gyroscope offset for axis X of sensor 4 is -0.07167873547404063
 Gyroscope offset for axis Y of sensor 4 is -0.05726630135464919
 Gyroscope offset for axis Z of sensor 4 is -0.15325601697302457
 Accelerometer offset for axis X of sensor 4 is -0.12781074492099312
 Accelerometer offset for axis Y of sensor 4 is 0.08877771438255572
 Accelerometer offset for axis Z of sensor 4 is -0.021670519216996857
-Ellipsoid parameters for sensor4: a=12006.998979745946; b=737.7068996428623; c=722.647626386976; x0=-12007.604955297486, y0=0.15525347256667285; z0=-1.2284895992212104
+Ellipsoid parameters for sensor4: a=0.4298830956254544; b=0.3932919905838813; c=0.3822880217003332; x0=-0.0340009191373609, y0=-0.03334106994254148; z0=-0.0020455525738320266
+Ellipsoid's rotation martrix:
+[[ 0.86149623 -0.49772631 -0.10046275]
+ [ 0.50673731  0.85533381  0.10780251]
+ [ 0.03227304 -0.14377968  0.98908334]]
 ---------------
-Warning: Desired error not necessarily achieved due to precision loss.
-         Current function value: 0.000008
-         Iterations: 85
-         Function evaluations: 1181
-         Gradient evaluations: 167
 Gyroscope offset for axis X of sensor 5 is 0.1490320354909707
 Gyroscope offset for axis Y of sensor 5 is -0.10505757925997061
 Gyroscope offset for axis Z of sensor 5 is -0.43147119014084506
 Accelerometer offset for axis X of sensor 5 is -0.32466539729119637
 Accelerometer offset for axis Y of sensor 5 is 0.098871687944865
 Accelerometer offset for axis Z of sensor 5 is 0.052770675578896975
-Ellipsoid parameters for sensor5: a=65924.44728481463; b=2295.209070913663; c=2256.749450997111; x0=-65924.21599540408, y0=4.167280621336712; z0=-0.37302544901436263
+Ellipsoid parameters for sensor5: a=0.4166302721547733; b=0.3979901953178131; c=0.3875585507322644; x0=-0.0682742033180361, y0=0.04990508553602202; z0=-0.021296145876358485
+Ellipsoid's rotation martrix:
+[[ 0.83106138 -0.5122594  -0.21662705]
+ [ 0.46870708  0.85472929 -0.22305048]
+ [ 0.29941719  0.08383401  0.95043212]]
 ---------------
-Optimization terminated successfully.
-         Current function value: 0.000128
-         Iterations: 79
-         Function evaluations: 665
-         Gradient evaluations: 95
 Gyroscope offset for axis X of sensor 6 is 0.06681768634198647
 Gyroscope offset for axis Y of sensor 6 is -0.10682974631002147
 Gyroscope offset for axis Z of sensor 6 is -0.28522722642635473
 Accelerometer offset for axis X of sensor 6 is -0.1256702708803613
 Accelerometer offset for axis Y of sensor 6 is 0.10515906451248452
 Accelerometer offset for axis Z of sensor 6 is -0.04722061709238477
-Ellipsoid parameters for sensor6: a=16016.479997658627; b=566.2637572601146; c=581.8118554864487; x0=-16016.267479996626, y0=1.5640383836141785; z0=-0.4035662249074448
+Ellipsoid parameters for sensor6: a=0.42060429451360676; b=0.39910474566363013; c=0.3935673488392541; x0=-0.06385329564903884, y0=-0.06767252119190537; z0=-0.024432896309445055
+Ellipsoid's rotation martrix:
+[[ 0.55639961  0.28424592  0.78078405]
+ [ 0.74218572 -0.59251486 -0.31318764]
+ [ 0.37360384  0.75374425 -0.5406383 ]]
 ---------------
-Optimization terminated successfully.
-         Current function value: 0.000163
-         Iterations: 80
-         Function evaluations: 679
-         Gradient evaluations: 97
 Gyroscope offset for axis X of sensor 7 is 0.06522791766365689
 Gyroscope offset for axis Y of sensor 7 is -0.0301087507987798
 Gyroscope offset for axis Z of sensor 7 is -0.16775616642396754
 Accelerometer offset for axis X of sensor 7 is -0.11561194808126418
 Accelerometer offset for axis Y of sensor 7 is 0.10321567845441193
 Accelerometer offset for axis Z of sensor 7 is -0.0007520518023393692
-Ellipsoid parameters for sensor7: a=66823.99338649577; b=632.1414695091582; c=1559.0109697270218; x0=-66608.88766456541, y0=-3.2411869156535653; z0=124.70283581379329
+Ellipsoid parameters for sensor7: a=0.4554037102553391; b=0.3962609125525014; c=0.371603902845298; x0=-0.015208263831405298, y0=-0.06666127832955857; z0=-0.012991881416375537
+Ellipsoid's rotation martrix:
+[[ 0.75202841 -0.01395157 -0.65898302]
+ [ 0.65301627  0.15163289  0.74200891]
+ [ 0.08957131 -0.98833841  0.12314284]]
