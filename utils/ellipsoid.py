@@ -31,7 +31,6 @@ def calculate_ellipsoid_parameters(x, y, z):
     AT = Tmtx.dot(A.dot(Tmtx.transpose()))
 
     ev, rotM = eigh(AT[0:3, 0:3]/(-1*AT[3, 3]))
-    # gain=sqrt(1./diag(ev))
     gain = np.sqrt(np.ones(len(ev))/ev)
 
     return ofs, gain, rotM
